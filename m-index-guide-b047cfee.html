@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>K1体育 · 信息索引与资料整理</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f0f2f5;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            line-height: 1.7;
+            color: #1e293b;
+            padding: 24px 16px 60px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 880px;
+            width: 100%;
+        }
+
+        /* hero 段落——开场短句 */
+        .hero-section {
+            margin: 16px 0 32px;
+            padding: 32px 28px;
+            background-color: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02), 0 1px 3px rgba(0, 0, 0, 0.04);
+            border: 1px solid #e6e9f0;
+        }
+
+        .hero-section .lead {
+            font-size: 1.8rem;
+            font-weight: 360;
+            letter-spacing: -0.01em;
+            color: #0b1e33;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .hero-section .sub {
+            font-size: 1rem;
+            color: #526477;
+            border-left: 3px solid #b3c2d9;
+            padding-left: 16px;
+            margin-top: 10px;
+        }
+
+        .hero-section .sub a {
+            color: #1f4b7a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #94a3b8;
+        }
+
+        .hero-section .sub a:hover {
+            border-bottom-style: solid;
+            color: #052e56;
+        }
+
+        /* 卡片通用 */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 28px 26px;
+            margin-bottom: 28px;
+            border: 1px solid #dee3ed;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02), 0 0 0 1px rgba(0,0,0,0.01);
+            transition: box-shadow 0.18s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04), 0 0 0 1px #d0d7e6;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+            letter-spacing: 0.01em;
+            color: #0b2b4a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .card-title::before {
+            content: "▍";
+            color: #7b93b3;
+            font-weight: 400;
+        }
+
+        .card p {
+            margin-bottom: 12px;
+        }
+
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* 承接段落——资料整理视角 */
+        .transition-text {
+            background: #f7f9fc;
+            padding: 24px 28px;
+            border-radius: 20px;
+            margin-bottom: 28px;
+            border: 1px solid #dce2ed;
+            color: #20364b;
+        }
+
+        .transition-text strong {
+            font-weight: 600;
+            color: #0f2b46;
+        }
+
+        /* 特点列表——卡片内嵌列表 */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0;
+        }
+
+        .feature-list li {
+            margin-bottom: 14px;
+            padding-left: 28px;
+            position: relative;
+            font-size: 0.98rem;
+        }
+
+        .feature-list li::before {
+            content: "·";
+            position: absolute;
+            left: 4px;
+            color: #4a6e8f;
+            font-weight: 700;
+            font-size: 1.6rem;
+            line-height: 1;
+        }
+
+        .feature-list li span.label {
+            display: inline-block;
+            font-weight: 500;
+            color: #1e3a5f;
+            min-width: 72px;
+        }
+
+        .feature-list li span.desc {
+            color: #2c405b;
+        }
+
+        /* 温和结尾 */
+        .gentle-ending {
+            background: #f3f6fb;
+            border: 1px solid #d5deec;
+            border-radius: 20px;
+            padding: 24px 28px;
+            margin: 16px 0 0;
+            color: #1f344b;
+            font-size: 0.95rem;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.02);
+        }
+
+        .gentle-ending a {
+            color: #15507b;
+            text-decoration: none;
+            border-bottom: 1px dotted #8aa1be;
+        }
+
+        .gentle-ending a:hover {
+            border-bottom: 1px solid #0a3b5e;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 480px) {
+            body {
+                padding: 16px 12px 48px;
+            }
+
+            .hero-section {
+                padding: 24px 18px;
+            }
+
+            .hero-section .lead {
+                font-size: 1.6rem;
+            }
+
+            .card {
+                padding: 22px 18px;
+                border-radius: 18px;
+            }
+
+            .transition-text {
+                padding: 20px 16px;
+            }
+
+            .feature-list li {
+                padding-left: 24px;
+                font-size: 0.96rem;
+            }
+
+            .gentle-ending {
+                padding: 20px 18px;
+            }
+        }
+
+        @media (min-width: 768px) {
+            .hero-section .lead {
+                font-size: 2.1rem;
+            }
+        }
+
+        /* 小间隔装饰 */
+        .soft-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #d6dee9 40%, #d6dee9 60%, transparent 100%);
+            margin: 20px 0 22px;
+            opacity: 0.4;
+        }
+
+        /* 简洁引用 / 场景摘要 */
+        .scene-note {
+            display: inline-block;
+            background: #eef2f8;
+            border-radius: 30px;
+            padding: 6px 16px;
+            font-size: 0.85rem;
+            color: #2b4a6b;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <!-- hero 开场短句 -->
+        <div class="hero-section">
+            <div class="lead">一份关于 K1体育 的资料整理笔记</div>
+            <div class="sub">
+                从信息索引和归档的角度，梳理运动内容平台的结构与脉络。
+                这里不提供快速跳转，只做客观介绍。
+            </div>
+        </div>
+
+        <!-- 承接段落（知识型视角） -->
+        <div class="transition-text">
+            <p><strong>为什么要做这样的整理？</strong> 日常在浏览不同运动相关站点时，容易迷失在链接与板块的切换中。把页面结构、内容分区、以及常见功能点记录下来，形成一份轻量的索引卡片，对后续回溯和横向对比都有帮助。以下内容基于对 <a href="https://m-index-k1sports.com" style="color:#1f4b7a; text-decoration:none; border-bottom:1px dashed #8ba3c0;">K1体育</a> 公开页面结构的一般观察，侧重于布局与信息组织方式。</p>
+        </div>
+
+        <!-- 特点卡片：分区架构与资料特征 -->
+        <div class="card">
+            <div class="card-title">内容组织特点</div>
+            <ul class="feature-list">
+                <li>
+                    <span class="label">模块分区</span>
+                    <span class="desc">首页采用多区块设计：顶部快速导航、中部内容流、底部辅助索引。每个区块都有明确的视觉边界，便于快速定位。</span>
+                </li>
+                <li>
+                    <span class="label">信息密度</span>
+                    <span class="desc">在有限的首屏空间内优先展示主要运动类别和动态列表，次要功能（帮助、规则说明）通过图标或文字链进入二级页面。</span>
+                </li>
+                <li>
+                    <span class="label">分类标签</span>
+                    <span class="desc">使用标签式筛选作为内容分类手段，例如按运动类型、热门程度或更新时间排序。标签色彩统一，降低视觉噪音。</span>
+                </li>
+                <li>
+                    <span class="label">响应式布局</span>
+                    <span class="desc">移动端和桌面端采用同一套内容结构，仅调整卡片宽度和排列方式，保持操作逻辑一致。导航栏在窄屏下折叠为菜单图标。</span>
+                </li>
+            </ul>
+            <div style="margin-top: 14px; color:#4b6382; font-size:0.9rem;">
+                <span class="scene-note">📋 资料更新：基于公开界面整理 · 功能以实际页面为准</span>
+            </div>
+        </div>
+
+        <!-- 第二个卡片：场景与索引提示 (融合 FAQ 摘要) -->
+        <div class="card">
+            <div class="card-title">索引场景与常见问题摘要</div>
+            <p>当你在不同设备上使用同一个平台时，书签和历史记录的管理方式会影响效率。以下是一些基于信息整理的观察，并非官方说明：</p>
+            <ul class="feature-list" style="margin-top: 2px;">
+                <li>
+                    <span class="label">首次接触</span>
+                    <span class="desc">建议先浏览首页中部的内容流，了解主要运动分类。页面底部通常有简要的条款说明和联系方式。</span>
+                </li>
+                <li>
+                    <span class="label">搜索习惯</span>
+                    <span class="desc">多数运动平台会提供站内搜索或分类筛选，<a href="https://m-index-k1sports.com" style="color:#1f4b7a; border-bottom:1px dotted #8aa1be; text-decoration:none;">K1体育</a> 在首页顶部保留了搜索入口，但具体结果页的筛选逻辑需要实际使用才能判断。</span>
+                </li>
+                <li>
+                    <span class="label">收藏与回访</span>
+                    <span class="desc">如果你发现某个页面结构清晰，可以考虑截图保存布局或手动记录核心板块名称，便于日后快速回忆。</span>
+                </li>
+                <li>
+                    <span class="label">内容更新节奏</span>
+                    <span class="desc">动态列表一般按时间倒序展示。部分平台会固定时段更新，可留意“最新”或“热门”标签的变化。</span>
+                </li>
+            </ul>
+            <p style="margin-top: 10px; font-size:0.92rem; color:#3d5a78;">🔍 以上内容仅为索引思路参考，不构成操作建议。</p>
+        </div>
+
+        <!-- 温和结尾段落 -->
+        <div class="gentle-ending">
+            <p style="margin-bottom: 6px;">整理工作往往需要在浏览与记录之间找到平衡。一份干净的笔记比匆忙的收藏更有价值。<a href="https://m-index-k1sports.com">K1体育</a> 的页面结构会随着迭代产生变化，以上描述仅反映当前界面所见的特征。如果你也在做类似的信息归档，不妨多留意布局中的细节——导航的层级、卡片间距、甚至按钮的反馈状态，这些都能帮助你更快理解一个平台的逻辑。</p>
+            <p style="margin-top: 14px; opacity: 0.7; font-size:0.88rem;">—— 资料索引 · 运动内容站点观察笔记</p>
+        </div>
+
+        <!-- 极简分隔与致谢 -->
+        <div style="margin-top: 32px; text-align: center; color: #6b7f99; font-size: 0.8rem; border-top: 1px solid #dce2ec; padding-top: 20px;">
+            <span>基于公开信息整理 · 2025</span>
+        </div>
+
+    </div>
+</body>
+</html>
