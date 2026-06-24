@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>爱游戏 · 资料索引</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: linear-gradient(145deg, #fbe9e0 0%, #f7d7c0 45%, #f1c8ae 100%);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 2rem 1rem 3rem;
+      line-height: 1.6;
+      color: #3e2c25;
+    }
+    .container {
+      max-width: 1100px;
+      width: 100%;
+    }
+    /* 卡片通用样式 */
+    .card {
+      background: rgba(255, 248, 242, 0.88);
+      backdrop-filter: blur(3px);
+      border-radius: 28px;
+      box-shadow: 0 12px 28px -8px rgba(120, 70, 50, 0.15), 0 4px 12px rgba(0,0,0,0.03);
+      padding: 2rem 2.2rem;
+      margin-bottom: 2rem;
+      border: 1px solid rgba(255, 235, 220, 0.5);
+      transition: transform 0.2s ease, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 32px -10px rgba(110, 65, 45, 0.2);
+    }
+    /* 目录感布局 – 网格 */
+    .directory-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 1.5rem;
+      margin-top: 0.2rem;
+    }
+    .dir-item {
+      background: #fffaf5;
+      border-radius: 20px;
+      padding: 1.4rem 1.2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+      border: 1px solid #f5e3d6;
+      transition: background 0.2s;
+    }
+    .dir-item:hover {
+      background: #fff4ec;
+    }
+    .dir-item h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #5a3b2c;
+      letter-spacing: 0.02em;
+    }
+    .dir-item p {
+      font-size: 0.9rem;
+      color: #6f4f3e;
+      margin: 0;
+    }
+    .dir-item .badge {
+      display: inline-block;
+      background: #e8d3c7;
+      color: #422f25;
+      font-size: 0.7rem;
+      padding: 0.2rem 0.7rem;
+      border-radius: 30px;
+      margin-top: 0.6rem;
+      font-weight: 500;
+    }
+    /* 标题层级 */
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 550;
+      letter-spacing: -0.02em;
+      color: #2e1f19;
+      margin-bottom: 0.3rem;
+      line-height: 1.2;
+    }
+    .subhead {
+      font-size: 1.1rem;
+      color: #674d3c;
+      margin-bottom: 2rem;
+      border-left: 4px solid #dfb69b;
+      padding-left: 1rem;
+      font-weight: 380;
+    }
+    h2 {
+      font-size: 1.6rem;
+      font-weight: 480;
+      color: #3b2a22;
+      margin-bottom: 1rem;
+      letter-spacing: -0.01em;
+    }
+    h2 i {
+      font-weight: 300;
+      color: #876b58;
+      margin-right: 0.4rem;
+    }
+    /* 链接风格 – 圆角按钮感 */
+    a {
+      text-decoration: none;
+      color: #9b5f3e;
+      font-weight: 500;
+      border-bottom: 1px dotted #dbbaa8;
+      transition: all 0.2s;
+    }
+    a:hover {
+      color: #6f3d23;
+      border-bottom-color: #6f3d23;
+    }
+    .link-button {
+      display: inline-block;
+      background: #f3e1d4;
+      padding: 0.4rem 1.2rem;
+      border-radius: 40px;
+      color: #3e2a1e;
+      font-weight: 500;
+      border: 1px solid #e7cdbb;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+      transition: all 0.2s;
+      border-bottom: none;
+    }
+    .link-button:hover {
+      background: #edcfbe;
+      box-shadow: 0 6px 12px rgba(100, 60, 40, 0.08);
+      transform: scale(1.02);
+      border-color: #dbb09a;
+      color: #2a1b13;
+    }
+    /* 提示区 / 说明区 */
+    .info-highlight {
+      background: #faeedf;
+      border-radius: 24px;
+      padding: 1.6rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.2rem;
+      margin: 1.8rem 0 1rem;
+      border-left: 6px solid #d4a688;
+    }
+    .info-highlight .emoji-big {
+      font-size: 2.4rem;
+      line-height: 1;
+    }
+    .info-highlight .text-block {
+      flex: 1;
+      min-width: 220px;
+    }
+    .info-highlight .text-block p {
+      margin: 0.2rem 0;
+    }
+    .tips {
+      background: #f2e5da;
+      border-radius: 24px;
+      padding: 1.4rem 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      align-items: flex-start;
+      margin: 1.5rem 0;
+    }
+    .tips .tip-item {
+      flex: 1 1 180px;
+    }
+    .tips .tip-item strong {
+      display: block;
+      font-weight: 600;
+      color: #4d3428;
+      margin-bottom: 0.3rem;
+    }
+    .faq-mini {
+      margin: 2rem 0 0.8rem;
+    }
+    .faq-mini details {
+      background: #fff8f0;
+      border-radius: 18px;
+      padding: 1rem 1.5rem;
+      margin-bottom: 0.8rem;
+      border: 1px solid #efdccf;
+      transition: 0.2s;
+    }
+    .faq-mini details[open] {
+      background: #fcf2e9;
+    }
+    .faq-mini summary {
+      font-weight: 530;
+      cursor: pointer;
+      color: #4d3428;
+      list-style: none;
+      display: flex;
+      align-items: center;
+    }
+    .faq-mini summary::before {
+      content: "▸";
+      margin-right: 0.6rem;
+      color: #bf8f74;
+      transition: 0.2s;
+    }
+    .faq-mini details[open] summary::before {
+      content: "▾";
+    }
+    .faq-mini .answer {
+      margin-top: 0.6rem;
+      padding-left: 1.5rem;
+      color: #5d4536;
+    }
+    .footnote {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #735d4e;
+      padding: 2rem 0 0.2rem;
+      border-top: 1px solid #e7cfbf;
+      margin-top: 2rem;
+    }
+    @media (max-width: 600px) {
+      body { padding: 1rem 0.8rem; }
+      .card { padding: 1.5rem 1.2rem; }
+      h1 { font-size: 1.9rem; }
+      .directory-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- hero 简介 -->
+  <div class="card" style="padding-bottom: 1.8rem;">
+    <h1>📚 爱游戏 · 资料整理索引</h1>
+    <div class="subhead">
+      围绕信息归档与条目梳理，搭建一个轻量的知识库界面。
+      这里没有铺陈，只有目录、提示与相关记录。
+    </div>
+    <p style="color: #5c4436; max-width: 680px;">
+      从不同角度收集、标记和归位，让每条资料都有可循的脉络。
+      以下内容围绕 <a href="https://portalline-igame.com">爱游戏</a> 展开，作为索引的锚点。
+    </p>
+  </div>
+
+  <!-- 目录感区块：四个资料分类 -->
+  <div class="card" style="padding-bottom: 1.8rem;">
+    <h2><i>🗂</i> 资料目录</h2>
+    <div class="directory-grid">
+      <div class="dir-item">
+        <h3>📋 项目笔记</h3>
+        <p>整理与游戏相关的功能描述、更新日志和版本记录。</p>
+        <span class="badge">12 条</span>
+      </div>
+      <div class="dir-item">
+        <h3>🕹 玩法概览</h3>
+        <p>收录主要模式、交互逻辑与体验摘要，便于查阅。</p>
+        <span class="badge">8 篇</span>
+      </div>
+      <div class="dir-item">
+        <h3>🧩 设定与背景</h3>
+        <p>世界观、角色说明、设定稿等辅助参考内容。</p>
+        <span class="badge">6 份</span>
+      </div>
+      <div class="dir-item">
+        <h3>📎 关联链接</h3>
+        <p>相关站点、社区板块与<a href="https://portalline-igame.com" class="link-button" style="padding:0.1rem 0.9rem; font-size:0.85rem;">爱游戏</a>资源映射。</p>
+        <span class="badge">持续更新</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 说明区：信息整理的角度 -->
+  <div class="card">
+    <h2><i>📌</i> 说明 · 整理逻辑</h2>
+    <div class="info-highlight">
+      <div class="emoji-big">🧭</div>
+      <div class="text-block">
+        <p><strong>索引而非陈列</strong> — 每个条目只保留必要元数据，正文链接指向具体存档。</p>
+        <p>以 <a href="https://portalline-igame.com">爱游戏</a> 为核心坐标，向外延伸关联记录，减少重复浏览成本。</p>
+      </div>
+    </div>
+    <p style="margin-top: 0.6rem; color: #5b4133;">
+      分类标签与时间戳配合使用，可以快速定位到某一阶段或某一类型的材料。 
+      所有引用内容均来自公开资料或已授权的整理合集。
+    </p>
+  </div>
+
+  <!-- 提示区 + 相关信息区 -->
+  <div class="card">
+    <h2><i>💡</i> 查阅提示</h2>
+    <div class="tips">
+      <div class="tip-item">
+        <strong>🔍 关键词检索</strong>
+        建议使用页面内搜索 (Ctrl+F) 定位具体条目。目录卡片只展示标题与摘要。
+      </div>
+      <div class="tip-item">
+        <strong>📅 时效标记</strong>
+        每条记录旁有日期或版本号，过时的资料会以浅色标注并附迁移链接。
+      </div>
+      <div class="tip-item">
+        <strong>🔗 关联跳转</strong>
+        部分条目直接指向 <a href="https://portalline-igame.com">爱游戏</a> 的对应页面，外部链接统一用图标区分。
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ 摘要区 (相关信息区) -->
+  <div class="card">
+    <h2><i>❓</i> 常见问题摘要</h2>
+    <div class="faq-mini">
+      <details>
+        <summary>这些资料来自哪里？</summary>
+        <div class="answer">
+          主要整理自公开的游戏说明、开发者日志及社区维护的文档合集。所有内容均标注原始出处。
+        </div>
+      </details>
+      <details>
+        <summary>如何贡献或修正条目？</summary>
+        <div class="answer">
+          目前通过 issue 或反馈表单提交修订建议。每条更动会记录在日志页。你也可以直接参考 <a href="https://portalline-igame.com">爱游戏</a> 的最新信息。
+        </div>
+      </details>
+      <details>
+        <summary>页面会持续更新吗？</summary>
+        <div class="answer">
+          是的。目录结构与卡片内容会随资料库的扩充而调整，保持索引的可用性。更新时间一般每月一次。
+        </div>
+      </details>
+    </div>
+  </div>
+
+  <!-- 温和收束 -->
+  <div class="footnote">
+    <span>📄 以索引的方式，让信息更易触及 · </span>
+    <span>核心入口：<a href="https://portalline-igame.com">爱游戏</a></span>
+  </div>
+
+</div>
+</body>
+</html>
